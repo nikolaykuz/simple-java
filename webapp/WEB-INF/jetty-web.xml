@@ -6,18 +6,20 @@
     <New id="dataSource" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg>jdbc/ds</Arg>
         <Arg>
-            <New class="org.apache.commons.dbcp.BasicDataSource">
+            <New class="org.apache.commons.dbcp2.BasicDataSource">
                 <Set name="testOnBorrow">true</Set>
-                <Set name="url">jdbc:h2:.simple-java;AUTO_SERVER=TRUE;USER=sa;PASSWORD=sa</Set>
+                <Set name="url">jdbc:h2:~/simple-java;AUTO_SERVER=TRUE;USER=sa;PASSWORD=sa</Set>
                 <!--<Set name="url">jdbc:oracle:thin:demo/demo@localhost:1521:xe</Set>-->
-                <Set name="maxActive">5</Set>
+                <Set name="maxTotal">5</Set>
                 <Set name="maxIdle">5</Set>
                 <Set name="defaultAutoCommit">true</Set>
             </New>
         </Arg>
     </New>
 
-    <Call class="org.eclipse.jetty.util.log.Log" name="info">
-        <Arg>Processed jetty-web.xml</Arg>
+    <Call class="org.eclipse.jetty.util.log.Log" name="getRootLogger">
+        <Call name="info">
+            <Arg>Processed jetty-web.xml</Arg>
+        </Call>
     </Call>
 </Configure>

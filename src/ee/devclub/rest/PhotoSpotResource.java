@@ -6,10 +6,11 @@ import ee.devclub.model.PhotoSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("photo-spots")
-@Produces("application/json")
+@Path("/photo-spots")
+@Produces(MediaType.APPLICATION_JSON)
 public class PhotoSpotResource extends SpringAwareResource {
     @Autowired PhotoSpotRepository repo;
     int maxSpots = 1000;

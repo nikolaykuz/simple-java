@@ -4,8 +4,8 @@ import org.hibernate.dialect.H2Dialect;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -23,7 +23,7 @@ public class HibernatePhotoSpotRepositoryIntegrationTest {
 
         System.setProperty("hibernate.dialect", H2Dialect.class.getName());
         System.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        AnnotationSessionFactoryBean sessionFactory = new AnnotationSessionFactoryBean();
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setAnnotatedClasses(new Class[] {PhotoSpot.class});
         sessionFactory.afterPropertiesSet();

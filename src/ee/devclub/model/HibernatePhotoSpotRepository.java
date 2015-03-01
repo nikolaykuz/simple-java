@@ -1,7 +1,7 @@
 package ee.devclub.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateOperations;
+import org.springframework.orm.hibernate4.HibernateOperations;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package ee.devclub.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.orm.hibernate3.HibernateOperations;
+import org.springframework.orm.hibernate4.HibernateOperations;
 
 import java.util.List;
 
