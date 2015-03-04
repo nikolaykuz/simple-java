@@ -6,4 +6,6 @@ public interface PhotoSpotRepository {
     List<PhotoSpot> getAllSpots();
 
     PhotoSpot persist(PhotoSpot spot);
+
+    PhotoSpot getSpotById(Long id);
 }

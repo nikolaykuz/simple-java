@@ -6,11 +6,13 @@ import ee.devclub.model.PhotoSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
+//@Singleton
 @Path("/photo-spots")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces(APPLICATION_JSON)
 public class PhotoSpotResource extends SpringAwareResource {
     @Autowired PhotoSpotRepository repo;
     int maxSpots = 1000;
@@ -19,6 +21,12 @@ public class PhotoSpotResource extends SpringAwareResource {
     public List<PhotoSpot> getAllSpots() {
       List<PhotoSpot> allSpots = repo.getAllSpots();
       return allSpots.subList(0, Math.min(maxSpots, allSpots.size()));
+    }
+
+    @GET
+    @Path("/ids/{id}")
+    public PhotoSpot getSpotById(@PathParam("id") Long id) {
+        return repo.getSpotById(id);
     }
 
     @POST

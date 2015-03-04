@@ -13,6 +13,7 @@ import java.util.List;
 public class JDBCPhotoSpotRepository implements PhotoSpotRepository {
     @Autowired DataSource dataSource;
 
+    @Override
     public List<PhotoSpot> getAllSpots() {
         Connection conn = null;
         try {
@@ -33,6 +34,7 @@ public class JDBCPhotoSpotRepository implements PhotoSpotRepository {
         }
     }
 
+    @Override
     public PhotoSpot persist(PhotoSpot spot) {
         Connection conn = null;
         try {
@@ -44,6 +46,27 @@ public class JDBCPhotoSpotRepository implements PhotoSpotRepository {
             stmt.setFloat(4, spot.location.longitude);
             stmt.execute();
             return spot;
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            closeSilently(conn);
+        }
+    }
+
+    @Override
+    public PhotoSpot getSpotById(Long id) {
+        Connection conn = null;
+        try {
+            List<PhotoSpot> spots = new ArrayList<PhotoSpot>();
+            conn = dataSource.getConnection();
+            ResultSet rs = conn.prepareStatement("select * from PhotoSpot WHERE id = ?").executeQuery();
+            while (rs.next()) {
+                spots.add(new PhotoSpot(rs.getString("name"), rs.getString("description"),
+                        new Location(rs.getFloat("latitude"), rs.getFloat("longitude"))));
+            }
+            return spots.get(0);
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
