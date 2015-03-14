@@ -31,9 +31,15 @@ public class AnotherSpotResource extends SpringAwareResource {
     }
 
     @POST
-    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public AnotherSpot newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
                                   @FormParam("lat") float lat, @FormParam("lon") float lon) {
-        return repo.save(new AnotherSpot(name, description, new Location(lat, lon)));
+        return repo.saveAndFlush(new AnotherSpot(name, description, new Location(lat, lon)));
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public AnotherSpot newPhotoSpot(AnotherSpot anotherSpot) {
+        return repo.saveAndFlush(anotherSpot);
     }
 }
