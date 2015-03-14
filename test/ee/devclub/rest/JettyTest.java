@@ -44,8 +44,8 @@ public class JettyTest {
     public void test() throws Exception {
         String responseMsg = target.path("rest/photo-spots/ids/0").request().get(String.class);
         PhotoSpot photoSpot = target.path("rest/photo-spots/ids/0").request().get(PhotoSpot.class);
-        assertEquals("", "Kohtuotsa vaateplatvorm", photoSpot.getName());
-        assertEquals(serialize(photoSpot), responseMsg);
+        assertEquals("Wrong name", "Kohtuotsa vaateplatvorm", photoSpot.getName());
+        assertEquals("Photospots do not match", serialize(photoSpot), responseMsg);
 
     }
 

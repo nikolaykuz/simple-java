@@ -1,15 +1,17 @@
 package ee.devclub.model;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-import org.springframework.web.bind.annotation.ResponseBody;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.*;
-
+import javax.persistence.Access;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 import static javax.persistence.AccessType.FIELD;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity

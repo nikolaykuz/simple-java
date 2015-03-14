@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository
 @Transactional
-
-@Repository
 public class HibernatePhotoSpotRepository implements PhotoSpotRepository {
     @Autowired HibernateOperations hibernate;
 
