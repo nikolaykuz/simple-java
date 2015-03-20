@@ -10,10 +10,6 @@ import static org.junit.Assert.assertEquals;
 
 //TODO: dedicated DB
 
-/**
- * @author nkuznetsov
- * @since 16.03.2015
- */
 public class PhotoSpotIntegrationJerseyTest extends BaseIntegrationTest {
 
     public PhotoSpotIntegrationJerseyTest() {

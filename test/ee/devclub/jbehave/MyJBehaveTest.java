@@ -11,10 +11,6 @@ import org.junit.runner.RunWith;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author nkuznetsov
- * @since 20.03.2015
- */
 @RunWith(JUnitReportingRunner.class)
 public class MyJBehaveTest extends JUnitStories {
     private final Configuration configuration = new MostUsefulConfiguration();

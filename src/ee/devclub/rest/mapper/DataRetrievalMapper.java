@@ -6,10 +6,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-/**
- * @author nkuznetsov
- * @since 20.03.2015
- */
 @Provider
 public class DataRetrievalMapper implements ExceptionMapper<DataRetrievalFailureException>{
     @Override

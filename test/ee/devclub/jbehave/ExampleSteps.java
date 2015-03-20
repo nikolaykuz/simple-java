@@ -5,10 +5,6 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-/**
- * @author nkuznetsov
- * @since 20.03.2015
- */
 public class ExampleSteps {
     int x;
 

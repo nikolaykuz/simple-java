@@ -13,10 +13,6 @@ import javax.ws.rs.core.Response;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author nkuznetsov
- * @since 20.03.2015
- */
 public class BaseIntegrationTest extends JerseyTest {
     protected final String basePath;
     protected Response response;

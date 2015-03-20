@@ -11,10 +11,6 @@ import static org.junit.Assert.assertEquals;
 
 //TODO: dedicated DB
 
-/**
- * @author nkuznetsov
- * @since 16.03.2015
- */
 public class AnotherSpotIntegrationJerseyTest extends JerseyTest {
     private Response response;
 

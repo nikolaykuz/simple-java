@@ -38,6 +38,7 @@
       <dependency org="org.springframework" name="spring-orm" rev="&spring.version;"/>
       <dependency org="org.springframework.data" name="spring-data-jpa" rev="1.7.2.RELEASE"/>
 
+      <dependency org="org.glassfish.jersey.core" name="jersey-server" rev="&jersey.version;"/>
       <dependency org="org.glassfish.jersey.containers" name="jersey-container-servlet" rev="&jersey.version;"/>
       <dependency org="org.glassfish.jersey.connectors" name="jersey-jetty-connector" rev="&jersey.version;"/>
       <dependency org="org.glassfish.jersey.containers" name="jersey-container-jetty-http" rev="&jersey.version;"/>

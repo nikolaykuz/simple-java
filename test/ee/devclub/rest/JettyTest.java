@@ -17,10 +17,6 @@ import java.io.StringWriter;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author nkuznetsov
- * @since 11.03.2015
- */
 public class JettyTest {
     private Server server;
     private WebTarget target;
