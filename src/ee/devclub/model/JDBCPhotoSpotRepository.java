@@ -76,6 +76,11 @@ public class JDBCPhotoSpotRepository implements PhotoSpotRepository {
         }
     }
 
+    @Override
+    public void delete(Long id) {
+
+    }
+
     private void closeSilently(Connection conn) {
         try {
             if (conn != null) conn.close();

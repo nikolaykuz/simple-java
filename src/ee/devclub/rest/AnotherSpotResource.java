@@ -1,20 +1,27 @@
 package ee.devclub.rest;
 
-import ee.devclub.model.*;
+import ee.devclub.model.AnotherSpot;
+import ee.devclub.model.Location;
+import ee.devclub.model.SpringDataAnotherSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
-import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED_TYPE;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
+//TODO: return 201 on create, set location header. Return Response?
+//http://stackoverflow.com/questions/2342579/http-status-code-for-update-and-delete
 
 @Singleton
 @Path("/another-spots")
 @Produces(APPLICATION_JSON)
-public class AnotherSpotResource extends SpringAwareResource {
+@Component
+public class AnotherSpotResource {
     @Autowired SpringDataAnotherSpotRepository repo;
     int maxSpots = 1000;
 
@@ -25,11 +32,13 @@ public class AnotherSpotResource extends SpringAwareResource {
     }
 
     @GET
-    @Path("/ids/{id}")
-    public AnotherSpot getSpotById(@PathParam("id") Long id) {
-        return repo.findOne(id);
+    @Path("/id/{id}")
+    public Response getSpotById(@PathParam("id") Long id) {
+        //TODO: location vs contentLocation
+        return Response.ok(repo.findOne(id)).build();
     }
 
+    //TODO: which POST is good/bad?
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public AnotherSpot newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,

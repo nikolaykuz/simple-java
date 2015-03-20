@@ -28,11 +28,11 @@
     </logger>
 
     <logger name="org.hibernate.SQL">
-        <level value="DEBUG"/>
+        <level value="WARN"/>
     </logger>
 
     <logger name="org.glassfish.jersey.tracing.general">
-        <level value="DEBUG"/>
+        <level value="WARN"/>
     </logger>
 
     <root>

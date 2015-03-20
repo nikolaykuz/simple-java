@@ -1,6 +1,5 @@
 package ee.devclub.model;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateOperations;
 import org.springframework.stereotype.Repository;
@@ -30,5 +29,12 @@ public class HibernatePhotoSpotRepository implements PhotoSpotRepository {
         //photoSpot is a lazy-initialized proxy
         hibernate.initialize(photoSpot);
         return photoSpot;
+    }
+
+    @Override
+    public void delete(Long id) {
+        PhotoSpot photoSpot = hibernate.load(PhotoSpot.class, id);
+        hibernate.initialize(photoSpot);
+        hibernate.delete(photoSpot);
     }
 }

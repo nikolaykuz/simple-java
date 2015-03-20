@@ -8,4 +8,6 @@ public interface PhotoSpotRepository {
     PhotoSpot persist(PhotoSpot spot);
 
     PhotoSpot getSpotById(Long id);
+
+    void delete(Long id);
 }

@@ -49,6 +49,8 @@ public class JettyTest {
 
     }
 
+
+    //TODO: jsonpath
     private String serialize(Object object) throws Exception {
         JAXBContext context = JAXBContext.newInstance(object.getClass());
         Marshaller marshaller = context.createMarshaller();

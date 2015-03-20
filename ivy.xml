@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
+<!DOCTYPE ivy-module [
+        <!ENTITY jersey.version "2.17">
+        <!ENTITY spring.version "4.1.5.RELEASE">
+        <!ENTITY jetty.version "9.1.1.v20140108">
+        <!ENTITY hibernate.version "4.3.8.Final">
+        <!ENTITY slf4j.version "1.6.1">
+        <!ENTITY jsonpath.version "1.2.0">
+        ]>
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
   <info organisation="devclub" module="simple-java"/>
@@ -12,35 +20,50 @@
   </configurations>
 
   <dependencies defaultconf="default->default">
-      <dependency org="org.eclipse.jetty" name="jetty-server" rev="9.3.0.M1"/>
-      <dependency org="org.eclipse.jetty" name="jetty-webapp" rev="9.3.0.M1"/>
-      <dependency org="org.eclipse.jetty" name="jetty-plus" rev="9.3.0.M1"/>
+      <dependency org="org.eclipse.jetty" name="jetty-server" rev="&jetty.version;"/>
+      <dependency org="org.eclipse.jetty" name="jetty-webapp" rev="&jetty.version;"/>
+      <dependency org="org.eclipse.jetty" name="jetty-plus" rev="&jetty.version;"/>
+      <dependency org="org.eclipse.jetty" name="jetty-continuation" rev="&jetty.version;"/>
 
       <dependency org="com.h2database" name="h2" rev="1.4.185"/>
       <dependency org="org.apache.commons" name="commons-dbcp2" rev="2.1"/>
       <dependency org="org.liquibase" name="liquibase-core" rev="3.3.2"/>
-      <dependency org="org.hibernate" name="hibernate-core" rev="4.3.8.Final"/>
-      <dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.3.8.Final"/>
-      <dependency org="org.javassist" name="javassist" rev="3.19.0-GA"/>
+      <dependency org="org.hibernate" name="hibernate-core" rev="&hibernate.version;"/>
+      <dependency org="org.hibernate" name="hibernate-entitymanager" rev="&hibernate.version;"/>
+      <dependency org="org.javassist" name="javassist" rev="3.18.1-GA"/>
 
-      <dependency org="org.springframework" name="spring-beans" rev="4.1.5.RELEASE"/>
-      <dependency org="org.springframework" name="spring-web" rev="4.1.5.RELEASE"/>
-      <dependency org="org.springframework" name="spring-jdbc" rev="4.1.5.RELEASE"/>
-      <dependency org="org.springframework" name="spring-orm" rev="4.1.5.RELEASE"/>
+      <dependency org="org.springframework" name="spring-beans" rev="&spring.version;"/>
+      <dependency org="org.springframework" name="spring-web" rev="&spring.version;"/>
+      <dependency org="org.springframework" name="spring-jdbc" rev="&spring.version;"/>
+      <dependency org="org.springframework" name="spring-orm" rev="&spring.version;"/>
       <dependency org="org.springframework.data" name="spring-data-jpa" rev="1.7.2.RELEASE"/>
 
-      <dependency org="org.glassfish.jersey.containers" name="jersey-container-servlet" rev="2.16"/>
-      <dependency org="org.glassfish.jersey.connectors" name="jersey-jetty-connector" rev="2.16"/>
-      <dependency org="org.glassfish.jersey.containers" name="jersey-container-jetty-http" rev="2.16"/>
-      <dependency org="org.glassfish.jersey.media" name="jersey-media-moxy" rev="2.16"/>
+      <dependency org="org.glassfish.jersey.containers" name="jersey-container-servlet" rev="&jersey.version;"/>
+      <dependency org="org.glassfish.jersey.connectors" name="jersey-jetty-connector" rev="&jersey.version;"/>
+      <dependency org="org.glassfish.jersey.containers" name="jersey-container-jetty-http" rev="&jersey.version;"/>
+      <dependency org="org.glassfish.jersey.media" name="jersey-media-moxy" rev="&jersey.version;"/>
+
+      <dependency org="org.springframework" name="spring-test" rev="&spring.version;" conf="test->default"/>
+      <dependency org="org.glassfish.jersey.test-framework" name="jersey-test-framework-core" rev="&jersey.version;" conf="test->default"/>
+      <dependency org="org.glassfish.jersey.test-framework.providers" name="jersey-test-framework-provider-jetty" rev="&jersey.version;" conf="test->default"/>
+      <dependency org="org.glassfish.jersey.ext" name="jersey-spring3" rev="&jersey.version;" conf="test->default"/>
+      <dependency org="com.jayway.jsonpath" name="json-path" rev="&jsonpath.version;" conf="test->default"/>
+      <dependency org="com.jayway.jsonpath" name="json-path-assert" rev="&jsonpath.version;" conf="test->default"/>
+      <dependency org="org.jbehave" name="jbehave-core" rev="3.9.5" conf="test->default"/>
+      <dependency org="org.jbehave" name="jbehave-spring" rev="3.9.5" conf="test->default"/>
+      <dependency org="de.codecentric" name="jbehave-junit-runner" rev="1.1.2" conf="test->default"/>
 
       <dependency org="junit" name="junit" rev="4.9" conf="test->default"/>
       <dependency org="org.mockito" name="mockito-all" rev="1.9.5" conf="test->default"/>
 
-      <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1"/>
-      <dependency org="org.slf4j" name="jcl-over-slf4j" rev="1.6.1"/>
-      <dependency org="org.slf4j" name="jul-to-slf4j" rev="1.6.1"/>
+      <dependency org="org.slf4j" name="slf4j-log4j12" rev="&slf4j.version;"/>
+      <dependency org="org.slf4j" name="jcl-over-slf4j" rev="&slf4j.version;"/>
+      <dependency org="org.slf4j" name="jul-to-slf4j" rev="&slf4j.version;"/>
 
       <dependency org="org.projectlombok" name="lombok" rev="1.16.2" conf="build->default"/>
   </dependencies>
+
+    <conflicts>
+        <manager name="latest-revision"/>
+    </conflicts>
 </ivy-module>
