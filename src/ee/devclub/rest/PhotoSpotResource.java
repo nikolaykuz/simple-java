@@ -9,16 +9,19 @@ import org.springframework.stereotype.Component;
 import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.List;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Singleton
-@Path(PhotoSpotResource.PATH)
+@Path(PhotoSpotResource.ROOT_PATH)
 @Produces(APPLICATION_JSON)
 @Component
 public class PhotoSpotResource {
-    public static final String PATH = "/photo-spots";
+    public static final String ROOT_PATH = "/photo-spots";
+    public static final String ID_SUB_PATH = "id"; //TODO: use it, Curie??
 
     @Autowired PhotoSpotRepository repo;
     int maxSpots = 1000;
@@ -35,10 +38,14 @@ public class PhotoSpotResource {
         return repo.getSpotById(id);
     }
 
+    //TODO:
     @POST
-    public PhotoSpot newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
-                                  @FormParam("lat") float lat, @FormParam("lon") float lon) {
-        return repo.persist(new PhotoSpot(name, description, new Location(lat, lon)));
+    @Consumes(APPLICATION_FORM_URLENCODED)
+    public Response newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
+                                  @FormParam("latitude") float lat, @FormParam("longitude") float lon) {
+        PhotoSpot photoSpot = repo.persist(new PhotoSpot(name, description, new Location(lat, lon)));
+        //TODO: how to construct proper URI
+        return Response.created(URI.create("id/" + photoSpot.getId())).entity(photoSpot).build();
     }
 
     @DELETE

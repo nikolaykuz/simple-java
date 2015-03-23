@@ -14,6 +14,10 @@ import java.io.Serializable;
 import static javax.persistence.AccessType.FIELD;
 import static javax.persistence.GenerationType.AUTO;
 
+//TODO: should equals include id or not??
+// http://stackoverflow.com/questions/5031614/the-jpa-hashcode-equals-dilemma
+// https://developer.jboss.org/wiki/EqualsandHashCode
+
 @Entity
 @Access(FIELD)
 @Data
