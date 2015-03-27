@@ -18,6 +18,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Singleton
 @Path(PhotoSpotResource.ROOT_PATH)
 @Produces(APPLICATION_JSON)
+@Consumes(APPLICATION_JSON)
 @Component
 public class PhotoSpotResource {
     public static final String ROOT_PATH = "/photo-spots";
@@ -38,12 +39,29 @@ public class PhotoSpotResource {
         return repo.getSpotById(id);
     }
 
-    //TODO:
+    @PUT
+    @Path("/id/{id}")
+    public Response putPhotoSpot(@PathParam("id") Long id, PhotoSpot photoSpotParam) {
+        PhotoSpot photoSpot = repo.getSpotById(id);
+        photoSpotParam.setId(photoSpot.getId());
+        photoSpot = repo.persist(photoSpotParam);
+        return Response.ok(photoSpot).build();
+    }
+
+    //TODO: delete later
     @POST
     @Consumes(APPLICATION_FORM_URLENCODED)
     public Response newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
-                                  @FormParam("latitude") float lat, @FormParam("longitude") float lon) {
+                                 @FormParam("latitude") float lat, @FormParam("longitude") float lon) {
         PhotoSpot photoSpot = repo.persist(new PhotoSpot(name, description, new Location(lat, lon)));
+        //TODO: how to construct proper URI
+        return Response.created(URI.create("id/" + photoSpot.getId())).entity(photoSpot).build();
+    }
+
+    @POST
+    public Response newPhotoSpot(PhotoSpot photoSpotParam) {
+        //TODO: validate!? XXE
+        PhotoSpot photoSpot = repo.persist(photoSpotParam);
         //TODO: how to construct proper URI
         return Response.created(URI.create("id/" + photoSpot.getId())).entity(photoSpot).build();
     }

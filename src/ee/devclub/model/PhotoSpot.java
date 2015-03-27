@@ -1,9 +1,6 @@
 package ee.devclub.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Access;
 import javax.persistence.Entity;
@@ -14,13 +11,10 @@ import java.io.Serializable;
 import static javax.persistence.AccessType.FIELD;
 import static javax.persistence.GenerationType.AUTO;
 
-//TODO: should equals include id or not??
-// http://stackoverflow.com/questions/5031614/the-jpa-hashcode-equals-dilemma
-// https://developer.jboss.org/wiki/EqualsandHashCode
-
 @Entity
 @Access(FIELD)
 @Data
+@EqualsAndHashCode(exclude={"id"})
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class PhotoSpot implements Serializable {

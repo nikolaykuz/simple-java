@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 //TODO: return 201 on create, set location header. Return Response?
@@ -40,14 +40,14 @@ public class AnotherSpotResource {
 
     //TODO: which POST is good/bad?
     @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Consumes(APPLICATION_FORM_URLENCODED)
     public AnotherSpot newPhotoSpot(@FormParam("name") String name, @FormParam("description") String description,
                                   @FormParam("lat") float lat, @FormParam("lon") float lon) {
         return repo.saveAndFlush(new AnotherSpot(name, description, new Location(lat, lon)));
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
     public AnotherSpot newPhotoSpot(AnotherSpot anotherSpot) {
         return repo.saveAndFlush(anotherSpot);
     }

@@ -14,7 +14,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="testOnBorrow" value="true"/>
-        <property name="url" value="jdbc:h2:~/simple-java;AUTO_SERVER=TRUE;USER=sa;PASSWORD=sa"/>
+        <property name="url" value="jdbc:h2:mem:simple-java-test;DB_CLOSE_DELAY=-1"/>
         <property name="maxTotal" value="5"/>
         <property name="maxIdle" value="5"/>
         <property name="defaultAutoCommit" value="true"/>

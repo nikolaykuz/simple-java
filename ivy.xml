@@ -48,11 +48,15 @@
       <dependency org="org.glassfish.jersey.test-framework" name="jersey-test-framework-core" rev="&jersey.version;" conf="test->default"/>
       <dependency org="org.glassfish.jersey.test-framework.providers" name="jersey-test-framework-provider-jetty" rev="&jersey.version;" conf="test->default"/>
       <dependency org="org.glassfish.jersey.ext" name="jersey-spring3" rev="&jersey.version;" conf="test->default"/>
+      <dependency org="com.jayway.restassured" name="rest-assured" rev="2.4.0"/>
       <dependency org="com.jayway.jsonpath" name="json-path" rev="&jsonpath.version;" conf="test->default"/>
       <dependency org="com.jayway.jsonpath" name="json-path-assert" rev="&jsonpath.version;" conf="test->default"/>
       <dependency org="org.jbehave" name="jbehave-core" rev="3.9.5" conf="test->default"/>
       <dependency org="org.jbehave" name="jbehave-spring" rev="3.9.5" conf="test->default"/>
       <dependency org="de.codecentric" name="jbehave-junit-runner" rev="1.1.2" conf="test->default"/>
+      <dependency org="com.fasterxml.jackson.core" name="jackson-core" rev="2.5.1" conf="test->default"/>
+      <dependency org="com.fasterxml.jackson.core" name="jackson-databind" rev="2.5.1" conf="test->default"/>
+
 
       <dependency org="junit" name="junit" rev="4.9" conf="test->default"/>
       <dependency org="org.mockito" name="mockito-all" rev="1.9.5" conf="test->default"/>

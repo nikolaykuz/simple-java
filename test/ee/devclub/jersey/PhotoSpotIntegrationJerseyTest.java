@@ -8,14 +8,21 @@ import org.junit.Test;
 import javax.ws.rs.core.Response;
 
 import static com.jayway.jsonassert.JsonAssert.with;
-import static javax.ws.rs.core.Response.Status.CREATED;
-import static javax.ws.rs.core.Response.Status.METHOD_NOT_ALLOWED;
+import static javax.ws.rs.core.Response.Status.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+//TODO: assert status, header (location, media-type), body
+
 //TODO: dedicated DB, who puts data in the DB now??
-//TODO: POST, PUT
 //TODO: set Accept-Header with xml, and other formats
+//TODO: not successful cases for PUT and POST
+
+//TODO: make generic test?
+
+//TODO: rest assured tool to use
+
+//TODO: recreate or not? Note: DB_CLOSE_DELAY
 
 public class PhotoSpotIntegrationJerseyTest extends BaseIntegrationTest {
     private final static String NON_EXISTENT_ID_PATH="/id/100500";
@@ -52,9 +59,23 @@ public class PhotoSpotIntegrationJerseyTest extends BaseIntegrationTest {
     @Test
     public void testPost() throws Exception {
         PhotoSpot photoSpot = new PhotoSpot("Test name", "Test description", new Location(10, 10));
-        Response response = assertStatus(CREATED, httpPost(photoSpot));
-        assertEquals(photoSpot, response.readEntity(PhotoSpot.class));
-        //TODO: assert location
+        Response response = assertStatus(CREATED, httpPostJSON(photoSpot));
+        //TODO: location
+        assertEquals("Wrong photo spot created", photoSpot, fromResponse(response));
+    }
+
+    @Test
+    public void testPut() throws Exception {
+        PhotoSpot photoSpot = new PhotoSpot("Test name", "Test description", new Location(10, 10));
+        PhotoSpot created = fromResponse(assertStatus(CREATED, httpPostJSON(photoSpot)));
+        assertEquals("Wrong photo spot created", photoSpot, created);
+
+        photoSpot.setName("Modified test name");
+        photoSpot.setDescription("Modified test description");
+        PhotoSpot updated = fromResponse(assertStatus(OK, httpPut("/id/" + created.getId(), photoSpot)));
+
+        assertEquals(photoSpot, updated);
+        assertEquals(created.getId(), updated.getId());
     }
 
     @Test
@@ -77,10 +98,7 @@ public class PhotoSpotIntegrationJerseyTest extends BaseIntegrationTest {
         assertOk(httpHead(""));
     }
 
-    //TODO: seems to be bad, if new field is added need to find this place and add
-    public void assertPhotoSpot(PhotoSpot expected, PhotoSpot actual) {
-        assertEquals("", expected.getName(), actual.getName());
-        assertEquals("", expected.getDescription(), actual.getDescription());
-        assertEquals("", expected.getLocation(), actual.getLocation());
+    public static PhotoSpot fromResponse(Response response) {
+        return response.readEntity(PhotoSpot.class);
     }
 }
