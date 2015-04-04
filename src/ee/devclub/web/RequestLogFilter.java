@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RequestLogFilter implements Filter {
-    private Logger logger = LoggerFactory.getLogger("requestLogger");
+    private static final Logger logger = LoggerFactory.getLogger("requestLogger");
+
     private String nodeId = Integer.toHexString((int)(Math.random() * 256)) + "-";
     private AtomicInteger requestId = new AtomicInteger(0);
 
@@ -28,11 +29,11 @@ public class RequestLogFilter implements Filter {
             filterChain.doFilter(request, response);
         }
         catch (Throwable e) {
-            logger.error("", e);
+            logger.error("Error", e);
         }
     }
 
-    private String serializeParams(ServletRequest request) {
+    private static String serializeParams(ServletRequest request) {
         StringBuilder builder = new StringBuilder(256);
         for (Map.Entry<String, String[]> param : request.getParameterMap().entrySet()) {
             builder.append(param.getKey()).append("=").append(normalize(param.getValue())).append("\t");
@@ -40,7 +41,7 @@ public class RequestLogFilter implements Filter {
         return builder.toString();
     }
 
-    private String normalize(String[] value) {
+    private static String normalize(String[] value) {
         String result = value.length == 1 ? value[0] : Arrays.toString(value);
         return result.replace("\r", "\\r").replace("\n", "\\n").replace("\t", "\\t");
     }

@@ -34,6 +34,16 @@ public class PhotoSpotIntegrationRestAssuredTest extends BaseIntegrationTest {
     }
 
     @Test
+    public void testPostWrongBody() throws Exception {
+        newRequest().content("Wrong content").post().then().assertThat().statusCode(SC_BAD_REQUEST);
+    }
+
+    @Test
+    public void testPostByIdFail() throws Exception {
+        newRequest().content(PHOTO_SPOT_1).post(ID + 2).then().assertThat().statusCode(SC_METHOD_NOT_ALLOWED);
+    }
+
+    @Test
     public void testGetRootEmpty() throws Exception {
         assertPhotoSpotsSize(0);
     }

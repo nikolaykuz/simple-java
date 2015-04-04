@@ -8,13 +8,16 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-//TODO: better class available
+//TODO: better class available in some lib?
 
 @Embeddable
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Location implements Serializable {
-    @NonNull float latitude;
-    @NonNull float longitude;
+    @NonNull
+    float latitude;
+
+    @NonNull
+    float longitude;
 }

@@ -16,7 +16,7 @@ public class JavaUtilLoggerRedirector implements ServletContextListener {
         for (Handler handler : rootLogger.getHandlers()) {
             rootLogger.removeHandler(handler);
         }
-//        install redirecting handler
+        //install redirecting handler
         SLF4JBridgeHandler.install();
     }
 
