@@ -2,10 +2,7 @@ package ee.devclub.model;
 
 import lombok.*;
 
-import javax.persistence.Access;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 import static javax.persistence.AccessType.FIELD;
@@ -25,5 +22,6 @@ public class PhotoSpot implements Serializable {
 
     @NonNull String description;
 
+    @Embedded
     @NonNull Location location;
 }

@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+//TODO: better class available
+
 @Embeddable
 @Data
 @NoArgsConstructor

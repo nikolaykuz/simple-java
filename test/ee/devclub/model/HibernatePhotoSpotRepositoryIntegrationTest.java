@@ -1,20 +1,7 @@
 package ee.devclub.model;
 
-import org.hibernate.dialect.H2Dialect;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
-
-import javax.sql.DataSource;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
 public class HibernatePhotoSpotRepositoryIntegrationTest {
-    DataSource dataSource;
+    /*DataSource dataSource;
     HibernatePhotoSpotRepository repo = new HibernatePhotoSpotRepository();
 
     @Before
@@ -54,5 +41,5 @@ public class HibernatePhotoSpotRepositoryIntegrationTest {
         PhotoSpot spot2 = repo.getAllSpots().get(0);
         assertThat(spot2, not(sameInstance(spot)));
         assertThat(spot2, equalTo(spot));
-    }
+    }*/
 }

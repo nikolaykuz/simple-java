@@ -1,19 +1,7 @@
 package ee.devclub.model;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.*;
-
 public class JDBCPhotoSpotRepositoryTest {
-    JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
+    /*JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
 
     @Before
     public void setUp() throws Exception {
@@ -47,5 +35,5 @@ public class JDBCPhotoSpotRepositoryTest {
         ResultSet rs = repo.dataSource.getConnection().prepareStatement("select * from PhotoSpot").executeQuery();
         when(rs.next()).thenReturn(true, true, true, false);
         assertThat(repo.getAllSpots().size(), is(3));
-    }
+    }*/
 }

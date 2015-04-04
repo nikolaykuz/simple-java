@@ -1,18 +1,7 @@
 package ee.devclub.model;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import java.sql.Connection;
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 public class JDBCPhotoSpotRepositoryIntegrationTest {
-    Connection conn;
+    /*Connection conn;
     JDBCPhotoSpotRepository repo = new JDBCPhotoSpotRepository();
 
     @Before
@@ -49,5 +38,5 @@ public class JDBCPhotoSpotRepositoryIntegrationTest {
         PhotoSpot spot2 = repo.getAllSpots().get(0);
         assertThat(spot2, not(sameInstance(spot)));
         assertThat(spot2, equalTo(spot));
-    }
+    }*/
 }
