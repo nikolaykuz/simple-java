@@ -7,8 +7,6 @@ import javax.persistence.*;
 import static javax.persistence.AccessType.FIELD;
 import static javax.persistence.GenerationType.AUTO;
 
-//TODO: should it be enum and not a table?
-
 @Entity
 @Access(FIELD)
 @Data

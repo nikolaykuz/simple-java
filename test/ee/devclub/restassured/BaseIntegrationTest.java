@@ -1,5 +1,6 @@
 package ee.devclub.restassured;
 
+import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.specification.RequestSpecification;
 import ee.devclub.rest.PhotoSpotResource;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -8,6 +9,7 @@ import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.jetty.JettyTestContainerFactory;
 import org.glassfish.jersey.test.spi.TestContainerException;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,6 +34,13 @@ public class BaseIntegrationTest extends JerseyTest {
     private final static String SLASH = "/";
 
     protected final String basePath;
+
+    @Override
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+    }
 
     public BaseIntegrationTest(String basePath) {
         if (basePath.endsWith(SLASH)) {

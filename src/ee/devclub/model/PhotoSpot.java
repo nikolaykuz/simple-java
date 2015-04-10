@@ -1,11 +1,13 @@
 package ee.devclub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 import static javax.persistence.AccessType.FIELD;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
@@ -30,16 +32,20 @@ public class PhotoSpot {
     @NonNull
     Location location;
 
-    //TODO: NonNull annotations?
-
-    //TODO: nullable
-    //TODO: name foreign key properly
+    //TODO: make non-nullable, how to set the value actually?
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "owner_id", /*nullable = false,*/ updatable = false, referencedColumnName = "id")
+    @JoinColumn(name = "owner_id", /*nullable = false,*/ updatable = false,
+            foreignKey = @ForeignKey(name = "fk_photospots_owner")
+    )
     User owner;
 
-    @ManyToMany
-    @JoinTable(name = "photospot_categories_relation")
+    @JsonIgnore
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "photospot_category_membership",
+            foreignKey = @ForeignKey(name = "fk_photospot_category"),
+            inverseForeignKey = @ForeignKey(name = "fk_category_photospot")
+    )
     List<PhotoSpotCategory> categories;
 
     //TODO: date from Java 8

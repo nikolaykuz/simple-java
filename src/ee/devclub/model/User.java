@@ -24,6 +24,6 @@ public class User {
     @NonNull
     String name;
 
-    @OneToMany(fetch = LAZY, mappedBy = "id")
+    @OneToMany(fetch = LAZY, mappedBy = "owner")
     List<PhotoSpot> createdPhotoSpots;
 }

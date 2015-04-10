@@ -5,7 +5,6 @@
         <!ENTITY jetty.version "9.1.1.v20140108">
         <!ENTITY hibernate.version "4.3.8.Final">
         <!ENTITY slf4j.version "1.6.1">
-        <!ENTITY jsonpath.version "1.2.0">
         ]>
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
@@ -48,9 +47,6 @@
       <dependency org="org.glassfish.jersey.test-framework" name="jersey-test-framework-core" rev="&jersey.version;" conf="test->default"/>
       <dependency org="org.glassfish.jersey.test-framework.providers" name="jersey-test-framework-provider-jetty" rev="&jersey.version;" conf="test->default"/>
       <dependency org="org.glassfish.jersey.ext" name="jersey-spring3" rev="&jersey.version;" conf="test->default"/>
-      <dependency org="com.jayway.restassured" name="rest-assured" rev="2.4.0"/>
-      <dependency org="com.jayway.jsonpath" name="json-path" rev="&jsonpath.version;" conf="test->default"/>
-      <dependency org="com.jayway.jsonpath" name="json-path-assert" rev="&jsonpath.version;" conf="test->default"/>
       <dependency org="org.jbehave" name="jbehave-core" rev="3.9.5" conf="test->default"/>
       <dependency org="org.jbehave" name="jbehave-spring" rev="3.9.5" conf="test->default"/>
       <dependency org="de.codecentric" name="jbehave-junit-runner" rev="1.1.2" conf="test->default"/>
@@ -59,7 +55,8 @@
 
 
       <dependency org="junit" name="junit" rev="4.9" conf="test->default"/>
-      <dependency org="org.mockito" name="mockito-all" rev="1.9.5" conf="test->default"/>
+      <dependency org="com.jayway.restassured" name="rest-assured" rev="2.4.0" conf="test->default"/>
+      <dependency org="org.mockito" name="mockito-core" rev="1.10.19" conf="test->default"/>
 
       <dependency org="org.slf4j" name="slf4j-log4j12" rev="&slf4j.version;"/>
       <dependency org="org.slf4j" name="jcl-over-slf4j" rev="&slf4j.version;"/>
@@ -68,7 +65,7 @@
       <dependency org="org.projectlombok" name="lombok" rev="1.16.2" conf="build->default"/>
   </dependencies>
 
-    <conflicts>
+    <!--<conflicts>
         <manager name="latest-revision"/>
-    </conflicts>
+    </conflicts>-->
 </ivy-module>
