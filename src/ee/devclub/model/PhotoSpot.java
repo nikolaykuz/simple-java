@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 import static javax.persistence.AccessType.FIELD;
@@ -22,14 +25,17 @@ public class PhotoSpot {
     @Id
     Long id;
 
-    @NonNull
+    @NonNull @NotNull
+    @Size(min = 5, max = 100)
     String name;
 
-    @NonNull
+    @NonNull @NotNull
+    @Size(max=2000)
     String description;
 
     @Embedded
-    @NonNull
+    @NonNull @NotNull
+    @Valid
     Location location;
 
     //TODO: make non-nullable, how to set the value actually?
@@ -40,6 +46,7 @@ public class PhotoSpot {
     )
     User owner;
 
+    //TODO: ManyToMany is an issue for REST paradigm
     @JsonIgnore
     @ManyToMany(fetch = EAGER)
     @JoinTable(name = "photospot_category_membership",
