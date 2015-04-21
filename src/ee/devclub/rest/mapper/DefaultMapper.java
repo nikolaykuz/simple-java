@@ -5,9 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
 
-@Provider
+//@Provider
 public class DefaultMapper implements ExceptionMapper<Exception> {
     private static final Logger log = LoggerFactory.getLogger(DefaultMapper.class);
 

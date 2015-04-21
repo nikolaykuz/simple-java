@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Digits;
 import java.io.Serializable;
 
 //TODO: better class available in some lib?
@@ -15,9 +16,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class Location implements Serializable {
-    @NonNull
+    @NonNull @Digits(integer = 2, fraction = 2)
     float latitude;
 
-    @NonNull
+    @NonNull @Digits(integer = 2, fraction = 2)
     float longitude;
 }

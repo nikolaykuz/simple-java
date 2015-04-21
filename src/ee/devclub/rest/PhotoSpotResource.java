@@ -7,11 +7,16 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
+import static javax.validation.executable.ExecutableType.ALL;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Singleton
@@ -19,6 +24,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @Component
+@ValidateOnExecution(type = ALL)
 public class PhotoSpotResource {
     public static final String ROOT_PATH = "/photo-spots";
     public static final String ID_SUB_PATH = "id"; //TODO: use it, Curie??
@@ -35,13 +41,15 @@ public class PhotoSpotResource {
 
     @GET
     @Path("/id/{id}")
-    public PhotoSpot getSpotById(@PathParam("id") Long id) {
+    public PhotoSpot getSpotById(@Min(value = 0) @PathParam("id") Long id) {
         return repo.findOne(id);
     }
 
     @PUT
     @Path("/id/{id}")
-    public Response updatePhotoSpot(@PathParam("id") Long id, PhotoSpot photoSpotParam) {
+    public Response updatePhotoSpot(@Min(value = 0) @PathParam("id") Long id,
+                                    @NotNull @Valid PhotoSpot photoSpotParam)
+    {
         PhotoSpot photoSpot = repo.findOne(id);
         if (photoSpot == null)
             throw new DataRetrievalFailureException("No photospot with id " + id + " exists");
@@ -51,8 +59,7 @@ public class PhotoSpotResource {
     }
 
     @POST
-    public Response newPhotoSpot(PhotoSpot photoSpotParam) {
-        //TODO: validate!? XXE
+    public Response newPhotoSpot(@NotNull @Valid PhotoSpot photoSpotParam) {
         PhotoSpot photoSpot = repo.save(photoSpotParam);
         //TODO: how to construct proper URI, right now it is ugly
         return Response.created(URI.create("id/" + photoSpot.getId())).entity(photoSpot).build();
@@ -60,7 +67,7 @@ public class PhotoSpotResource {
 
     @DELETE
     @Path("/id/{id}")
-    public Response deleteById(@PathParam("id") Long id) {
+    public Response deleteById(@Min(value = 0) @PathParam("id") Long id) {
         repo.delete(id);
         return Response.noContent().build();
     }
