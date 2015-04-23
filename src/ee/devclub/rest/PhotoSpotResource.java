@@ -4,6 +4,7 @@ import ee.devclub.model.PhotoSpot;
 import ee.devclub.repo.PhotoSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Singleton;
@@ -67,6 +68,7 @@ public class PhotoSpotResource {
 
     @DELETE
     @Path("/id/{id}")
+    @PreAuthorize("hasRole('ROLE_DUMMY')")
     public Response deleteById(@Min(value = 0) @PathParam("id") Long id) {
         repo.delete(id);
         return Response.noContent().build();
